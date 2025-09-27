@@ -14,4 +14,16 @@ export class Task {
       this.done = true;
     }
   }
+  changeName(newName) {
+    this.name = newName;
+  }
+  changeDescription(newDescription) {
+    this.description = newDescription;
+  }
+  changeDueDate(newDueDate) {
+    this.dueDate = newDueDate;
+  }
+  changePriority(newPriority) {
+    this.priority = newPriority;
+  }
 }
