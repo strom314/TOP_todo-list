@@ -41,6 +41,8 @@ export const domManager = (function () {
       projectTitle.classList.add("project-title");
       taskCount.classList.add("task-count");
 
+      projectCard.addEventListener("click", () => displayTasks(project));
+
       projectTitle.textContent = project.name;
       taskCount.textContent = project.tasks.length;
 
