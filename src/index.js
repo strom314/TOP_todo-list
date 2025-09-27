@@ -1,4 +1,5 @@
 import { Project } from "./project";
+import "./style.css";
 
 const projekt1 = new Project("Default");
 projekt1.createTask("pes", "psy psy", "idk", 2);

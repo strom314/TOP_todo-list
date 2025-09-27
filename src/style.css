@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  margin: 0;
+}
+.sidebar {
+  grid-column: 1/2;
+  background-color: grey;
+}
+.body {
+  grid-column: 2/3;
+}
