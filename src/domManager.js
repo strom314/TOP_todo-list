@@ -6,7 +6,32 @@ export const domManager = (function () {
   const projectContainer = document.querySelector(".project-container");
   const content = document.querySelector(".body");
 
+  const newProjectBtn = document.querySelector(".add-project-button");
+  const addProjectFormContainer = document.querySelector("#project-form");
+  const submitProjectBtn = document.querySelector("#submit-project");
+  const addProjectForm = document.forms["add-project"];
+
+  newProjectBtn.addEventListener("click", toggleNewProjectForm);
+  submitProjectBtn.addEventListener("click", addProject);
+
+  function toggleNewProjectForm() {
+    if (addProjectFormContainer.style.display === "flex") {
+      addProjectFormContainer.style.display = "none";
+    } else {
+      addProjectFormContainer.style.display = "flex";
+    }
+  }
+  function addProject() {
+    const name = addProjectForm.name.value;
+    projectManager.createProject(name);
+    toggleNewProjectForm();
+    displayProjects();
+    addProjectForm.reset();
+  }
+
   function displayProjects() {
+    clearProjects();
+
     projectManager.projects.forEach((project) => {
       const projectCard = document.createElement("div");
       const projectTitle = document.createElement("p");
