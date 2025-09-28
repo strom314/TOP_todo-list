@@ -132,6 +132,7 @@ h1 {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
 
   padding: 5px 0px 5px 0px;
@@ -146,14 +147,32 @@ h1 {
 
   transition: all ease 0.2s;
 }
-.task:hover {
-  translate: 1px;
-}
 .task p {
   font-size: 0.9rem;
 }
 .task input {
   margin-left: 10px;
+}
+.task button {
+  font-size: 1rem;
+
+  background-color: var(--forest-mist);
+  backdrop-filter: blur(3px);
+  box-shadow: 2px 2px 5px 0px rgba(16, 68, 58, 0.2);
+
+  padding: 5px 10px;
+
+  border-radius: 14px;
+  border: solid 2px var(--forest-green-light);
+
+  margin-left: auto;
+  margin-right: 20px;
+
+  transition: all ease 0.2s;
+}
+.task button:hover {
+  background-color: var(--forest-green);
+  scale: 1.05;
 }
 .add-task {
   width: 100%;

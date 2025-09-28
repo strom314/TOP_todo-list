@@ -132,7 +132,6 @@ export const domManager = (function () {
       const dueDate = document.createElement("p");
       const taskPriority = document.createElement("div");
 
-      const editButton = document.createElement("div");
       const deleteButton = document.createElement("button");
 
       const checkBox = document.createElement("input");
@@ -146,18 +145,15 @@ export const domManager = (function () {
       taskCard.setAttribute("data-id", task.id);
 
       deleteButton.setAttribute("data-id", task.id);
-      deleteButton.textContent = "cc";
+      deleteButton.textContent = "delete";
       deleteButton.addEventListener("click", () => {
         deleteTask(task.id);
         console.log("delete");
         displayTasks(projectManager.findActiveProject());
       });
 
-      editButton.setAttribute("data-id", task.id);
-      
-
-      taskContent.append(taskTitle, taskDescription, dueDate, deleteButton);
-      taskCard.append(checkBox, taskPriority, taskContent);
+      taskContent.append(taskTitle, taskDescription, dueDate);
+      taskCard.append(checkBox, taskPriority, taskContent, deleteButton);
       taskCard.classList.add("task");
       taskContainer.append(taskCard);
     });
