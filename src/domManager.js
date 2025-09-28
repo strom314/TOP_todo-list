@@ -53,6 +53,7 @@ export const domManager = (function () {
 
     project.createTask(name, description, dueDate, priority);
     displayTasks(project);
+    toggleNewTaskForm();
     addTaskForm.reset();
   }
 
@@ -71,18 +72,26 @@ export const domManager = (function () {
       projectCard.addEventListener("click", () => displayTasks(project));
 
       projectTitle.textContent = project.name;
-      taskCount.textContent = project.tasks.length;
+      taskCount.textContent = 0;
 
       projectCard.append(projectTitle, taskCount);
 
       projectContainer.append(projectCard);
     });
   }
+  function updateTaskCount() {
+    const taskCounts = document.querySelectorAll(".task-count");
+    for (let i = 0; i < taskCounts.length; i++) {
+      const element = taskCounts[i];
+      element.textContent = projectManager.projects[i].tasks.length;
+    }
+  }
 
   function displayTasks(project) {
     clearContent();
 
     setActive(project);
+    updateTaskCount();
 
     const title = document.createElement("h1");
     title.textContent = project.name;
