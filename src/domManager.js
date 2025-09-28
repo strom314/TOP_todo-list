@@ -66,7 +66,7 @@ export const domManager = (function () {
       const taskCount = document.createElement("p");
 
       projectCard.classList.add("project-card");
-      projectTitle.classList.add("project-title");
+      projectTitle.classList.add("project-name");
       taskCount.classList.add("task-count");
 
       projectCard.addEventListener("click", () => displayTasks(project));
@@ -124,10 +124,14 @@ export const domManager = (function () {
 
     project.tasks.forEach((task) => {
       const taskCard = document.createElement("div");
+
+      const taskContent = document.createElement("div");
+      taskContent.classList.add("task-content");
       const taskTitle = document.createElement("h2");
       const taskDescription = document.createElement("p");
       const dueDate = document.createElement("p");
       const taskPriority = document.createElement("div");
+
       const checkBox = document.createElement("input");
       checkBox.type = "checkbox";
 
@@ -136,13 +140,9 @@ export const domManager = (function () {
       dueDate.textContent = task.dueDate;
       taskPriority.textContent = task.priority;
 
-      taskCard.append(
-        taskTitle,
-        taskDescription,
-        dueDate,
-        taskPriority,
-        checkBox
-      );
+      taskContent.append(taskTitle, taskDescription, dueDate);
+      taskCard.append(checkBox, taskPriority, taskContent);
+      taskCard.classList.add("task");
       taskContainer.append(taskCard);
     });
     return taskContainer;

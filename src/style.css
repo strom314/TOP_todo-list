@@ -7,15 +7,80 @@ body {
   grid-template-columns: 1fr 6fr;
   margin: 0;
 }
+p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+h2 {
+  margin: 0;
+}
 .sidebar {
   grid-column: 1/2;
   background-color: grey;
 }
-.body {
-  grid-column: 2/3;
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 20px;
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+.logo img {
+  width: auto;
+  height: 80px;
+}
+
+.project-title {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0px 20px;
+  margin-bottom: 10px;
+}
+.add-project-button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+.add-project-button:hover {
+  background-color: lightgrey;
+}
+.project-container {
+  display: flex;
+  flex-direction: column;
 }
 .project-card {
   background-color: purple;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+  /* width: 100%; */
+}
+
+.body {
+  grid-column: 2/3;
+}
+
+.main {
+  /* display: flex;
+  justify-content: center; */
+
+  padding: 0px 25vw;
+}
+h1{
+  margin-top: 5vh;
+  margin-bottom: 30px;
+}
+.task {
+  width: 100%;
+  border: solid brown 1px;
+  display: flex;
+  align-items: center;
+}
+.add-task {
+  width: 100%;
+  margin-top: 20px;
 }
 
 .form-container {
@@ -26,5 +91,23 @@ body {
   width: 100%;
 
   justify-content: center;
-  align-items: center;
+  
+
+  background-color: rgba(0, 0, 0, 0.447);
+}
+form{
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+form div{
+  display: flex;
+  flex-direction: column;
+}
+h3{
+  margin: 0;
+}
+form button{
+  width: 100%;
 }
