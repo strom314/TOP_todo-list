@@ -132,6 +132,9 @@ export const domManager = (function () {
       const dueDate = document.createElement("p");
       const taskPriority = document.createElement("div");
 
+      const editButton = document.createElement("div");
+      const deleteButton = document.createElement("button");
+
       const checkBox = document.createElement("input");
       checkBox.type = "checkbox";
 
@@ -140,12 +143,37 @@ export const domManager = (function () {
       dueDate.textContent = task.dueDate;
       taskPriority.textContent = task.priority;
 
-      taskContent.append(taskTitle, taskDescription, dueDate);
+      taskCard.setAttribute("data-id", task.id);
+
+      deleteButton.setAttribute("data-id", task.id);
+      deleteButton.textContent = "cc";
+      deleteButton.addEventListener("click", () => {
+        deleteTask(task.id);
+        console.log("delete");
+        displayTasks(projectManager.findActiveProject());
+      });
+
+      editButton.setAttribute("data-id", task.id);
+      
+
+      taskContent.append(taskTitle, taskDescription, dueDate, deleteButton);
       taskCard.append(checkBox, taskPriority, taskContent);
       taskCard.classList.add("task");
       taskContainer.append(taskCard);
     });
     return taskContainer;
+  }
+
+  function deleteTask(taskId) {
+    const project = projectManager.findActiveProject();
+
+    let taskToDelete = null;
+    project.tasks.forEach((task) => {
+      if (task.id == taskId) {
+        taskToDelete = task.id;
+      }
+    });
+    project.deleteTask(taskToDelete);
   }
 
   function clearContent() {

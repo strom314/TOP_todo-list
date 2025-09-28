@@ -17,13 +17,13 @@ export class Project {
     this.name = newName;
   }
 
-  deleteTask(taskName) {
-    const index = this.findTaskIndex(taskName);
+  deleteTask(taskId) {
+    const index = this.findTaskIndex(taskId);
     this.tasks.splice(index, 1); //removes the found element
   }
 
-  editTask(taskName, name, description, dueDate, priority) {
-    const task = this.tasks[this.findTaskIndex(taskName)];
+  editTask(taskId, name, description, dueDate, priority) {
+    const task = this.tasks[this.findTaskIndex(taskId)];
     task.name = name;
     task.changeName(name);
     task.changeDescription(description);
@@ -31,10 +31,10 @@ export class Project {
     task.changePriority(priority);
   }
 
-  findTaskIndex(taskName) {
+  findTaskIndex(taskId) {
     let index = -1;
     this.tasks.forEach((task) => {
-      if (task.name === taskName) {
+      if (task.id === taskId) {
         index = this.tasks.indexOf(task);
       }
     });

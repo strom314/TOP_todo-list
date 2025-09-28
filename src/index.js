@@ -14,9 +14,7 @@ projekt1.rename("Novy nazov");
 console.log(projekt1.name);
 
 console.log(projekt1.tasks);
-projekt1.deleteTask("kocka");
 console.log(projekt1.tasks);
-projekt1.editTask("kralik", "novy pes", "nove psy psy", "new idk", 5);
 
 domManager.displayProjects();
 domManager.displayTasks(projekt1);
