@@ -37,10 +37,10 @@ export const domManager = (function () {
     addProjectForm.reset();
   }
   function toggleNewTaskForm() {
-    if (addProjectFormContainer.style.display === "flex") {
-      addProjectFormContainer.style.display = "none";
+    if (addTaskFormContainer.style.display === "flex") {
+      addTaskFormContainer.style.display = "none";
     } else {
-      addProjectFormContainer.style.display = "flex";
+      addTaskFormContainer.style.display = "flex";
     }
   }
   function addTask() {
@@ -82,26 +82,31 @@ export const domManager = (function () {
   function displayTasks(project) {
     clearContent();
 
-    projectManager.projects.forEach((project) => {
-      project.active = false;
-    });
-    project.active = true;
+    setActive(project);
 
     const title = document.createElement("h1");
     title.textContent = project.name;
 
     const tasks = createTasks(project);
+    const addTaskBtn = createAddTaskButton();
 
-    // const addTaskButton = document.createElement("button");
-    // addTaskButton.classList.add("add-task");
-    // addTaskButton.textContent = "add task";
-
-    // mainBody.append(addTaskButton);
-
-    // addTaskButton.addEventListener("click", toggleNewTaskForm);
-
-    mainBody.append(title, tasks);
+    mainBody.append(title, tasks, addTaskBtn);
     console.log(project.tasks);
+  }
+
+  function createAddTaskButton() {
+    const addTaskButton = document.createElement("button");
+    addTaskButton.classList.add("add-task");
+    addTaskButton.textContent = "add task";
+    addTaskButton.addEventListener("click", toggleNewTaskForm);
+    return addTaskButton;
+  }
+
+  function setActive(project) {
+    projectManager.projects.forEach((project) => {
+      project.active = false;
+    });
+    project.active = true;
   }
 
   function createTasks(project) {
