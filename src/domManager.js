@@ -4,15 +4,22 @@ import { projectManager } from "./projectManager";
 
 export const domManager = (function () {
   const projectContainer = document.querySelector(".project-container");
-  const content = document.querySelector(".body");
+
+  const mainBody = document.querySelector(".main");
 
   const newProjectBtn = document.querySelector(".add-project-button");
   const addProjectFormContainer = document.querySelector("#project-form");
   const submitProjectBtn = document.querySelector("#submit-project");
   const addProjectForm = document.forms["add-project"];
 
-  newProjectBtn.addEventListener("click", toggleNewProjectForm);
-  submitProjectBtn.addEventListener("click", addProject);
+  const addTaskForm = document.forms["add-task"];
+  const addTaskFormContainer = document.querySelector("#task-form");
+  const submitTaskBtn = document.querySelector("#submit-task");
+
+  function addEventListeners() {
+    newProjectBtn.addEventListener("click", toggleNewProjectForm);
+    submitProjectBtn.addEventListener("click", addProject);
+  }
 
   function toggleNewProjectForm() {
     if (addProjectFormContainer.style.display === "flex") {
@@ -27,6 +34,23 @@ export const domManager = (function () {
     toggleNewProjectForm();
     displayProjects();
     addProjectForm.reset();
+  }
+  function toggleNewTaskForm() {
+    if (addProjectFormContainer.style.display === "flex") {
+      addProjectFormContainer.style.display = "none";
+    } else {
+      addProjectFormContainer.style.display = "flex";
+    }
+  }
+  function addTask(project) {
+    const name = addTaskForm.name.value;
+    const description = addTaskForm.description.value;
+    const dueDate = addTaskForm.dueDate.value;
+    const priority = addTaskForm.priority.value;
+
+    project.createTask(name, description, dueDate, priority);
+    displayTasks(project);
+    addTaskForm.reset();
   }
 
   function displayProjects() {
@@ -55,29 +79,64 @@ export const domManager = (function () {
   function displayTasks(project) {
     clearContent();
 
+    const title = document.createElement("h1");
+    title.textContent = project.name;
+
+    const tasks = createTasks(project);
+
+    
+    // const addTaskButton = document.createElement("button");
+    // addTaskButton.classList.add("add-task");
+    // addTaskButton.textContent = "add task";
+
+    // mainBody.append(addTaskButton);
+
+    // addTaskButton.addEventListener("click", toggleNewTaskForm);
+    // submitTaskBtn.addEventListener("click", () => addTask(project));
+
+    mainBody.append(title, tasks);
+    console.log(project.tasks);
+  }
+
+  function createTasks(project) {
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("body");
+
     project.tasks.forEach((task) => {
       const taskCard = document.createElement("div");
       const taskTitle = document.createElement("h2");
       const taskDescription = document.createElement("p");
+      const dueDate = document.createElement("p");
       const taskPriority = document.createElement("div");
       const checkBox = document.createElement("input");
       checkBox.type = "checkbox";
 
       taskTitle.textContent = task.name;
       taskDescription.textContent = task.description;
+      dueDate.textContent = task.dueDate;
       taskPriority.textContent = task.priority;
 
-      taskCard.append(taskTitle, taskDescription, taskPriority, checkBox);
-      content.append(taskCard);
+      taskCard.append(
+        taskTitle,
+        taskDescription,
+        dueDate,
+        taskPriority,
+        checkBox
+      );
+      taskContainer.append(taskCard);
     });
+    return taskContainer;
   }
 
   function clearContent() {
-    content.innerHTML = "";
+    mainBody.innerHTML = "";
+    // taskContainer.innerHTML = "";
   }
   function clearProjects() {
     projectContainer.innerHTML = "";
   }
+
+  addEventListeners();
 
   return { displayProjects, displayTasks };
 })();
