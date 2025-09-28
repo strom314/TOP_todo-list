@@ -1,7 +1,7 @@
 :root {
   --forest-light: #eff1ec;
   --forest-green-light: rgb(205, 230, 201);
-  --forest-mist: #e1ecdc;
+  --forest-mist: rgb(225, 236, 220);
   --forest-green: rgb(174, 209, 169);
   --forest-green-light: #618e70a6;
   --forest-dark-green: rgb(16, 68, 58);
@@ -84,6 +84,7 @@ h2 {
   padding: 8px 16px;
 
   font-size: 1.5rem;
+  transition: all ease 0.2s;
 }
 .add-project-button:hover {
   scale: 1.05;
@@ -102,6 +103,8 @@ h2 {
 
   border-radius: 16px;
   border: solid 2px var(--forest-green-light);
+
+  transition: all ease 0.2s;
 }
 .project-card:hover {
   scale: 1.05;
@@ -127,13 +130,50 @@ h1 {
 }
 .task {
   width: 100%;
-  border: solid brown 1px;
   display: flex;
   align-items: center;
+  gap: 20px;
+
+  padding: 5px 0px 5px 0px;
+  margin-bottom: 10px;
+
+  background-color: rgba(225, 236, 220, 0.5);
+  backdrop-filter: blur(3px);
+  box-shadow: 2px 2px 5px 0px rgba(16, 68, 58, 0.2);
+
+  border-radius: 16px;
+  border: solid 2px var(--forest-green-light);
+
+  transition: all ease 0.2s;
+}
+.task:hover {
+  translate: 1px;
+}
+.task p {
+  font-size: 0.9rem;
+}
+.task input {
+  margin-left: 10px;
 }
 .add-task {
   width: 100%;
   margin-top: 20px;
+  padding: 10px 10px;
+
+  font-size: 1rem;
+
+  background-color: var(--forest-mist);
+  backdrop-filter: blur(3px);
+  box-shadow: 2px 2px 5px 0px rgba(16, 68, 58, 0.2);
+
+  border-radius: 14px;
+  border: solid 2px var(--forest-green-light);
+
+  transition: all ease 0.2s;
+}
+.add-task:hover {
+  background-color: var(--forest-green);
+  scale: 1.05;
 }
 
 .form-container {
@@ -163,4 +203,40 @@ h3 {
 }
 form button {
   width: 100%;
+}
+
+input[type="checkbox"] {
+  /* Remove default styling */
+  appearance: none;
+
+  width: 20px; /* size */
+  height: 20px; /* size */
+  border: 2px solid var(--forest-green); /* border color */
+  border-radius: 6px; /* border radius */
+  background-color: #fff; /* checkbox background */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked {
+  background-color: var(--forest-green); /* checkbox color when checked */
+  border-color: var(--forest-green-light);
+}
+
+/* Checkmark */
+input[type="checkbox"]:checked::after {
+  content: ""; /* create the pseudo-element that becomes the checkmark */
+  position: absolute; /* position it relative to the checkbox */
+  left: 10px; /* horizontal offset inside the box to position the mark */
+  top: 0px; /* vertical offset inside the box to position the mark */
+  width: 4px; /* shorter "leg" width of the checkmark */
+  height: 9px; /* longer "leg" height of the checkmark */
+  border: solid #fff; /* color of the checkmark (white here) */
+  border-width: 0 2px 2px 0; /* draw only the right and bottom borders to form the 'V' */
+  transform: rotate(
+    45deg
+  ); /* rotate the borders into the familiar check shape */
+  transform-origin: left top; /* rotate around the top-left so the mark sits correctly */
 }
