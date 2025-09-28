@@ -18,5 +18,15 @@ export const projectManager = (function () {
     return index;
   }
 
-  return { projects, createProject };
+  function findActiveProject() {
+    let activeProject = null;
+    projects.forEach((project) => {
+      if (project.active) {
+        activeProject = project;
+      }
+    });
+    return activeProject;
+  }
+
+  return { projects, createProject, findProjectIndex, findActiveProject };
 })();

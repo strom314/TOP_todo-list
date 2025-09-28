@@ -19,6 +19,7 @@ export const domManager = (function () {
   function addEventListeners() {
     newProjectBtn.addEventListener("click", toggleNewProjectForm);
     submitProjectBtn.addEventListener("click", addProject);
+    submitTaskBtn.addEventListener("click", addTask);
   }
 
   function toggleNewProjectForm() {
@@ -42,7 +43,9 @@ export const domManager = (function () {
       addProjectFormContainer.style.display = "flex";
     }
   }
-  function addTask(project) {
+  function addTask() {
+    const project = projectManager.findActiveProject();
+
     const name = addTaskForm.name.value;
     const description = addTaskForm.description.value;
     const dueDate = addTaskForm.dueDate.value;
@@ -79,12 +82,16 @@ export const domManager = (function () {
   function displayTasks(project) {
     clearContent();
 
+    projectManager.projects.forEach((project) => {
+      project.active = false;
+    });
+    project.active = true;
+
     const title = document.createElement("h1");
     title.textContent = project.name;
 
     const tasks = createTasks(project);
 
-    
     // const addTaskButton = document.createElement("button");
     // addTaskButton.classList.add("add-task");
     // addTaskButton.textContent = "add task";
@@ -92,7 +99,6 @@ export const domManager = (function () {
     // mainBody.append(addTaskButton);
 
     // addTaskButton.addEventListener("click", toggleNewTaskForm);
-    // submitTaskBtn.addEventListener("click", () => addTask(project));
 
     mainBody.append(title, tasks);
     console.log(project.tasks);
@@ -130,7 +136,6 @@ export const domManager = (function () {
 
   function clearContent() {
     mainBody.innerHTML = "";
-    // taskContainer.innerHTML = "";
   }
   function clearProjects() {
     projectContainer.innerHTML = "";

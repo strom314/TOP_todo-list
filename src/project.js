@@ -6,6 +6,7 @@ export class Project {
   }
 
   tasks = [];
+  active = false;
 
   createTask(name, description, dueDate, priority) {
     const task = new Task(name, description, dueDate, priority);
