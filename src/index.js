@@ -1,7 +1,12 @@
 import { domManager } from "./domManager";
 import { Project } from "./project";
 import { projectManager } from "./projectManager";
+import { storage as storage } from "./storage";
 import "./style.css";
+
+if (storage.storageAvailable("localStorage")) {
+  storage.load();
+}
 
 projectManager.createProject("projekt1");
 const projekt1 = projectManager.projects[0];

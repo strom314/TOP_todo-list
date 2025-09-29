@@ -1,7 +1,7 @@
 import { Project } from "./project";
 
 export const projectManager = (function () {
-  const projects = [];
+  let projects = [];
 
   function createProject(name) {
     const project = new Project(name);
@@ -28,5 +28,16 @@ export const projectManager = (function () {
     return activeProject;
   }
 
-  return { projects, createProject, findProjectIndex, findActiveProject };
+  function loadProjects(newProjects) {
+    projects.length = 0;
+    projects.push(...newProjects);
+  }
+
+  return {
+    projects,
+    createProject,
+    findProjectIndex,
+    findActiveProject,
+    loadProjects,
+  };
 })();
