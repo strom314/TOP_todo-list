@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>to-do list</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="project-form" class="form-container">
+      <form name="add-project">
+        <h3>Add project</h3>
+        <div>
+          <label for="name">Name</label>
+          <input required type="text" name="name" id="project-name" />
+        </div>
+
+        <button type="button" id="submit-project">Add</button>
+      </form>
+    </div>
+
+    <div id="task-form" class="form-container">
+      <form name="add-task">
+        <h3>Add task</h3>
+        <div>
+          <label for="name">Name</label>
+          <input required type="text" name="name" id="project-name" />
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" />
+        </div>
+        <div>
+          <label for="dueDate">due date</label>
+          <input type="date" name="dueDate" id="dueDate" />
+        </div>
+        <div>
+          <label for="priority">Priority</label>
+          <select name="priority" id="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <button type="button" id="submit-task">Add</button>
+      </form>
+    </div>
+
+    <div class="sidebar">
+      <div class="logo">
+        <img src="32b2d3b1ad3c4ad8637d.png" alt="logo" />
+        <p>Todo trees</p>
+      </div>
+      <div class="project-title">
+        <p>Projects</p>
+        <button class="add-project-button">+</button>
+      </div>
+      <div class="project-container"></div>
+    </div>
+    <div class="main"></div>
+  </body>
+</html>
